@@ -1,6 +1,0 @@
-services:
-  - type: web
-    name: wp-midterm-tetris
-    env: node
-    buildCommand: npm install
-    startCommand: node server.js

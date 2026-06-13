@@ -7,7 +7,6 @@
 | 程式碼生成 | AI 產生 Tetris 遊戲邏輯（tetris.js）、伺服器端（server.js、db.js）、前端版面（index.html、style.css），由學生審閱與修改 |
 | 除錯 | AI 協助診斷 `EADDRINUSE`、better-sqlite3 編譯失敗、Socket.io 事件名稱錯誤等問題 |
 | 文件撰寫 | 本 README.md 由 AI 協助產生初稿，學生修改與補充 |
-| 部署設定 | render.yaml 由 AI 提供模板，學生調整路徑與指令 |
 
 學生 林楷睿 (gary3927) 聲明：以上內容如實填寫，所有程式碼均已理解其運作原理。
 
@@ -22,12 +21,6 @@
 > 授課教師：陳鍾誠  
 > 課程：網站設計 (Web Programming)  
 > 繳交日期：2026/6/14
-
-## 線上試玩
-
-> 部署在 Render 免費方案，首次開啟約需 30-60 秒（冷啟動）
-
-**https://wp-midterm-tetris.onrender.com**
 
 ## 專案簡介
 
@@ -50,7 +43,6 @@
 - **部署與維運**
   - 單一 Node.js 服務，同時提供 HTTP + WebSocket
   - JSON 檔案儲存，無需資料庫
-  - 支援 Render / Railway 一鍵部署
 
 ## 技術架構
 
@@ -76,7 +68,7 @@
 - **Frontend**: HTML5 Canvas + Vanilla JavaScript + Socket.io Client
 - **Backend**: Node.js + Express + Socket.io
 - **Storage**: JSON 檔案 (data/scores.json)
-- **Deployment**: Render (free plan)
+- **Deployment**: 本機執行 (Node.js)
 
 ## 本機執行
 
@@ -97,30 +89,6 @@ open http://localhost:3000
 ```bash
 rm data/scores.json
 ```
-
-## 部署至 Render
-
-1. 前往 https://render.com 註冊（使用 GitHub 登入）
-2. 點選 **New +** → **Web Service**
-3. 選擇 `gary3927/_wp` 儲存庫
-4. 設定：
-   - **Name**: `wp-midterm-tetris`
-   - **Root Directory**: `homework/midterm`
-   - **Environment**: `Node`
-   - **Build Command**: `npm install`
-   - **Start Command**: `node server.js`
-   - **Plan**: Free
-5. 點選 **Create Web Service**
-6. 等待約 2-3 分鐘部署完成
-7. 取得網址：`https://wp-midterm-tetris.onrender.com`
-
-### 部署至 Railway（替代方案）
-
-1. 前往 https://railway.app 註冊
-2. **New Project** → **Deploy from GitHub repo**
-3. 選擇 `gary3927/_wp`
-4. 在 Settings 設定 **Root Directory** 為 `homework/midterm`
-5. Railway 自動偵測 Node.js 並執行
 
 ## API 說明
 
@@ -180,17 +148,9 @@ rm data/scores.json
 
 本來想用 SQLite 儲存分數，但 Windows 編譯 better-sqlite3 需要 C++ 工具鏈。改用 JSON 檔案儲存，讀寫都是同步操作，資料量小（不到 1MB）時效率足夠。
 
-### Render 部署注意事項
-
-- Free plan 有冷啟動問題（30-60 秒）
-- 檔案系統是暫時的（重啟後檔案會消失），但 free plan 不太會重啟
-- 需要設定 Root Directory 為 `homework/midterm`
-- 不使用 Docker，直接使用 Node 環境
-
 ## 參考資料
 
 - [MDN Canvas API](https://developer.mozilla.org/en-US/docs/Web/API/Canvas_API)
 - [Socket.io 官方文件](https://socket.io/docs/v4/)
 - [Express 官方文件](https://expressjs.com/)
-- [Render Node.js 部署指南](https://render.com/docs/deploy-node-express-app)
 - [陳鍾誠 — 網站設計](https://github.com/ccc114b/_wp)
