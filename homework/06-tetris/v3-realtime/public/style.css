@@ -1,0 +1,122 @@
+* { margin: 0; padding: 0; box-sizing: border-box; }
+
+body {
+  font-family: 'Segoe UI', 'PingFang TC', sans-serif;
+  background: #1a1a2e;
+  color: #eee;
+  min-height: 100vh;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+}
+
+.container { text-align: center; }
+
+h1 {
+  font-size: 2.5rem;
+  letter-spacing: 0.5rem;
+  color: #00f0f0;
+  text-shadow: 0 0 20px rgba(0,240,240,0.5);
+}
+
+.subtitle { color: #888; margin-bottom: 1rem; }
+
+.game-wrapper {
+  display: flex;
+  align-items: flex-start;
+  justify-content: center;
+  gap: 1.5rem;
+}
+
+.game-info { display: flex; flex-direction: column; gap: 0.75rem; min-width: 100px; }
+
+.info-box {
+  background: #16213e; border: 1px solid #333; border-radius: 8px;
+  padding: 0.75rem; text-align: center;
+}
+.info-box .label { display: block; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.1rem; }
+.info-box .value { display: block; font-size: 1.5rem; font-weight: bold; color: #fff; margin-top: 0.25rem; }
+
+.game-board {
+  border: 2px solid #444; border-radius: 4px;
+  background: #0f0f1a; line-height: 0; position: relative;
+}
+
+.overlay {
+  display: none;
+  position: absolute; top: 0; left: 0; right: 0; bottom: 0;
+  background: rgba(0,0,0,0.85);
+  align-items: center; justify-content: center;
+  z-index: 10;
+}
+.overlay.active { display: flex; }
+
+.overlay-content { text-align: center; padding: 1rem; }
+.overlay-content h2 { color: #ff6b6b; margin-bottom: 0.5rem; font-size: 1.5rem; }
+.overlay-content p { margin-bottom: 1rem; font-size: 1.2rem; }
+#final-score { color: #ffd700; font-weight: bold; }
+
+#name-input {
+  display: block; margin: 0 auto 0.75rem; padding: 0.5rem 1rem;
+  border: 2px solid #667eea; border-radius: 8px; background: #16213e;
+  color: #fff; font-size: 1rem; text-align: center; outline: none; width: 200px;
+}
+
+#submit-btn, #skip-btn {
+  padding: 0.5rem 1.5rem; border: none; border-radius: 8px;
+  cursor: pointer; font-size: 0.9rem; margin: 0 0.3rem;
+}
+#submit-btn { background: #667eea; color: white; }
+#submit-btn:hover { background: #5a6fd6; }
+#skip-btn { background: #555; color: #ccc; }
+#skip-btn:hover { background: #666; }
+
+.side-panel { display: flex; flex-direction: column; gap: 0.75rem; min-width: 220px; }
+
+.next-box {
+  background: #16213e; border: 1px solid #333; border-radius: 8px;
+  padding: 0.75rem; text-align: center;
+}
+.next-box .label { display: block; font-size: 0.75rem; color: #888; text-transform: uppercase; letter-spacing: 0.1rem; margin-bottom: 0.5rem; }
+
+.online-info {
+  margin-top: 0.5rem; font-size: 0.8rem; color: #2ecc71;
+}
+#online-count { font-weight: bold; font-size: 1rem; }
+
+.leaderboard, .recent-scores {
+  background: #16213e; border: 1px solid #333; border-radius: 8px;
+  padding: 0.75rem; text-align: left;
+}
+.leaderboard { max-height: 320px; overflow-y: auto; }
+.recent-scores { max-height: 140px; overflow-y: auto; }
+
+.leaderboard .label, .recent-scores .label {
+  display: block; font-size: 0.75rem; color: #888;
+  text-transform: uppercase; letter-spacing: 0.1rem;
+  margin-bottom: 0.5rem; text-align: center;
+}
+
+.loading { text-align: center; color: #666; font-size: 0.85rem; padding: 0.5rem 0; }
+
+.lb-entry {
+  display: grid; grid-template-columns: 24px 1fr 60px;
+  gap: 0.3rem; padding: 0.3rem 0.4rem;
+  font-size: 0.8rem; border-bottom: 1px solid #222;
+}
+.lb-entry:last-child { border-bottom: none; }
+.lb-entry .rank { color: #888; text-align: center; }
+.lb-entry .rank.gold { color: #ffd700; }
+.lb-entry .rank.silver { color: #c0c0c0; }
+.lb-entry .rank.bronze { color: #cd7f32; }
+.lb-entry .name { color: #eee; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.lb-entry .pts { color: #ffd700; text-align: right; font-weight: bold; }
+
+.recent-entry {
+  display: grid; grid-template-columns: 1fr 50px;
+  gap: 0.3rem; padding: 0.25rem 0.4rem;
+  font-size: 0.75rem; border-bottom: 1px solid #222;
+}
+.recent-entry:last-child { border-bottom: none; }
+.recent-entry .name { color: #aaa; overflow: hidden; text-overflow: ellipsis; white-space: nowrap; }
+.recent-entry .pts { color: #2ecc71; text-align: right; }

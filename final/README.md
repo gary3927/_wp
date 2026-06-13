@@ -21,7 +21,7 @@
 
 | 作業 | 主題 | 技術重點 | 檔案數 |
 |:----:|------|----------|:------:|
-| 01 | （空） | — | 0 |
+| 01 | 個人網頁 | HTML + CSS 排版設計 | 1 |
 | 02 | HTML 表單設計 | input types, form, CSS 美化 | 1 |
 | 03 | Node.js Hello World | Node.js 基礎、console.log | 2 |
 | 04 | 10 個 JavaScript 程式 | if, for, while, function, JSON, Array, Object | 11 |
@@ -31,9 +31,28 @@
 
 ---
 
-## 作業 01 — （暫缺）
+## 作業 01 — 個人網頁
 
-homework/01 目錄目前為空白，尚無檔案。
+### 檔案
+
+`index.html`
+
+### 說明
+
+使用 HTML 與 CSS 建立個人名片式網頁，包含：
+
+- 個人頭像與姓名
+- 關於自我介紹
+- 專業技能標籤
+- 修課目標列表
+
+### 技術特點
+
+- CSS 漸層背景（`linear-gradient`）
+- Flexbox 卡片居中排版
+- 圓形頭像（`border-radius: 50%`）
+- 自定義項目符號（`::before`）
+- 標籤樣式（`skills span`）
 
 ---
 
@@ -138,7 +157,6 @@ hello 你好
 - 函式定義與呼叫
 - 陣列操作（filter, forEach, reduce）
 - JSON 物件資料結構
-- Canvas 繪圖基礎
 
 ---
 
@@ -248,6 +266,9 @@ homework/05/
 ## 技術成長歷程
 
 ```
+01 個人網頁   ──→ HTML + CSS 基礎排版與設計
+    │
+    ▼
 02 HTML 表單  ──→ 認識 HTML5 各種輸入元素與表單設計
     │
     ▼
@@ -268,4 +289,4 @@ homework/05/
 
 ## 結語
 
-從最基礎的 HTML 表單設計開始，逐步學習 JavaScript 程式設計、前端互動開發，到最後理解 Node.js 後端的 Error-First Callback 模式與資料庫查詢流程。七次作業涵蓋了網頁設計從前端到後端的完整學習路徑。
+從最基礎的個人網頁與 HTML 表單設計開始，逐步學習 JavaScript 程式設計、前端互動開發，到最後理解 Node.js 後端的 Error-First Callback 模式與資料庫查詢流程。七次作業涵蓋了網頁設計從前端到後端的完整學習路徑。

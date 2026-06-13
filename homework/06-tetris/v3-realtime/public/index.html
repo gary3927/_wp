@@ -1,0 +1,70 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Tetris - v3 即時排行榜</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+  <div class="container">
+    <h1>TETRIS</h1>
+    <p class="subtitle">v3 — 即時排行榜 (WebSocket)</p>
+    <div class="game-wrapper">
+      <div class="game-info">
+        <div class="info-box">
+          <span class="label">分數</span>
+          <span id="score" class="value">0</span>
+        </div>
+        <div class="info-box">
+          <span class="label">等級</span>
+          <span id="level" class="value">1</span>
+        </div>
+        <div class="info-box">
+          <span class="label">行數</span>
+          <span id="lines" class="value">0</span>
+        </div>
+        <div class="info-box">
+          <span class="label">最高分</span>
+          <span id="high-score" class="value">0</span>
+        </div>
+      </div>
+      <div class="game-board">
+        <canvas id="game-canvas" width="300" height="600"></canvas>
+        <div id="name-overlay" class="overlay">
+          <div class="overlay-content">
+            <h2>遊戲結束</h2>
+            <p>你的分數：<span id="final-score">0</span></p>
+            <input type="text" id="name-input" placeholder="輸入名稱" maxlength="15">
+            <button id="submit-btn">提交分數</button>
+            <button id="skip-btn">略過</button>
+          </div>
+        </div>
+      </div>
+      <div class="side-panel">
+        <div class="next-box">
+          <span class="label">下一塊</span>
+          <canvas id="next-canvas" width="120" height="120"></canvas>
+          <div class="online-info">
+            <span id="online-count">0</span> 人在線
+          </div>
+        </div>
+        <div class="leaderboard">
+          <span class="label">即時排行榜 TOP 20</span>
+          <div id="leaderboard-list">
+            <div class="loading">連線中...</div>
+          </div>
+        </div>
+        <div class="recent-scores">
+          <span class="label">最新成績</span>
+          <div id="recent-list">
+            <div class="loading">等待中...</div>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+  <script src="/socket.io/socket.io.js"></script>
+  <script src="tetris.js"></script>
+</body>
+</html>
