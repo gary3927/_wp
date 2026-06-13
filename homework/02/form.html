@@ -1,1 +1,292 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>全功能 Input Type 綜合問卷調查表</title>
+    <style>
+        body {
+            font-family: "Helvetica Neue", Helvetica, Arial, sans-serif;
+            background-color: #f4f7f6;
+            color: #333;
+            padding: 20px;
+        }
+        .container {
+            max-width: 700px;
+            background: #fff;
+            margin: 0 auto;
+            padding: 30px;
+            border-radius: 8px;
+            box-shadow: 0 4px 15px rgba(0,0,0,0.1);
+        }
+        h1 {
+            text-align: center;
+            color: #2c3e50;
+            margin-bottom: 10px;
+        }
+        p.subtitle {
+            text-align: center;
+            color: #7f8c8d;
+            margin-bottom: 30px;
+        }
+        fieldset {
+            border: 1px solid #ddd;
+            border-radius: 6px;
+            padding: 20px;
+            margin-bottom: 25px;
+        }
+        legend {
+            font-weight: bold;
+            color: #2980b9;
+            padding: 0 10px;
+        }
+        .form-group {
+            margin-bottom: 18px;
+        }
+        .form-group label {
+            display: block;
+            font-weight: 600;
+            margin-bottom: 8px;
+        }
+        /* 針對一般文字類型的 input 進行優化 */
+        input[type="text"],
+        input[type="email"],
+        input[type="password"],
+        input[type="tel"],
+        input[type="url"],
+        input[type="number"],
+        input[type="date"],
+        input[type="time"],
+        input[type="week"],
+        input[type="month"],
+        select,
+        textarea {
+            width: 100%;
+            padding: 10px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            box-sizing: border-box;
+            font-size: 14px;
+        }
+        /* 針對重疊或並排的 checkbox/radio */
+        .inline-group {
+            display: flex;
+            gap: 15px;
+            flex-wrap: wrap;
+            margin-top: 5px;
+        }
+        .inline-group label {
+            display: inline-flex;
+            align-items: center;
+            font-weight: normal;
+            cursor: pointer;
+        }
+        .inline-group input {
+            margin-right: 6px;
+        }
+        /* 特殊 input 樣式微調 */
+        input[type="color"] {
+            width: 60px;
+            height: 40px;
+            border: 1px solid #ccc;
+            border-radius: 4px;
+            padding: 2px;
+            cursor: pointer;
+        }
+        input[type="range"] {
+            width: 100%;
+            cursor: pointer;
+        }
+        /* 按鈕樣式 */
+        .btn-group {
+            text-align: center;
+            margin-top: 30px;
+            display: flex;
+            gap: 15px;
+            justify-content: center;
+        }
+        input[type="submit"],
+        input[type="button"],
+        input[type="reset"] {
+            padding: 12px 25px;
+            font-size: 16px;
+            border: none;
+            border-radius: 4px;
+            cursor: pointer;
+            transition: background 0.3s;
+        }
+        input[type="submit"] {
+            background-color: #2ecc71;
+            color: white;
+            font-weight: bold;
+        }
+        input[type="submit"]:hover { background-color: #27ae60; }
+        
+        input[type="reset"] {
+            background-color: #e74c3c;
+            color: white;
+        }
+        input[type="reset"]:hover { background-color: #c0392b; }
 
+        input[type="button"] {
+            background-color: #34495e;
+            color: white;
+        }
+        input[type="button"]:hover { background-color: #2c3e50; }
+    </style>
+</head>
+<body>
+
+<div class="container">
+    <h1>數位生活習慣與意見調查</h1>
+    <p class="subtitle">本問卷旨在展示 HTML5 各種豐富的表單輸入類型（Input Types）</p>
+
+    <form action="#" method="post" enctype="multipart/form-data">
+        
+        <input type="hidden" name="survey_id" value="9527">
+
+        <fieldset>
+            <legend>基本個人資料（文字與隱私類）</legend>
+            
+            <div class="form-group">
+                <label for="username">1. 姓名 (type="text")</label>
+                <input type="text" id="username" name="username" placeholder="請輸入真實姓名" required>
+            </div>
+
+            <div class="form-group">
+                <label for="password">2. 填表密碼 (type="password")</label>
+                <input type="password" id="password" name="password" placeholder="用來修改本問卷的自訂密碼">
+            </div>
+
+            <div class="form-group">
+                <label for="email">3. 電子郵件 (type="email")</label>
+                <input type="email" id="email" name="email" placeholder="example@domain.com" required>
+            </div>
+
+            <div class="form-group">
+                <label for="phone">4. 手機號碼 (type="tel")</label>
+                <input type="tel" id="phone" name="phone" placeholder="0912-345678" pattern="[0-9]{4}-[0-9]{6}">
+            </div>
+
+            <div class="form-group">
+                <label for="blog">5. 個人網站或社群連結 (type="url")</label>
+                <input type="url" id="blog" name="blog" placeholder="https://example.com">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>數據與愛好（選擇與範圍類）</legend>
+
+            <div class="form-group">
+                <label for="age">6. 您的年齡 (type="number")</label>
+                <input type="number" id="age" name="age" min="1" max="120" step="1" value="25">
+            </div>
+
+            <div class="form-group">
+                <label>7. 您最常使用的作業系統 (type="radio")</label>
+                <div class="inline-group">
+                    <label><input type="radio" name="os" value="windows" checked> Windows</label>
+                    <label><input type="radio" name="os" value="macos"> macOS</label>
+                    <label><input type="radio" name="os" value="linux"> Linux</label>
+                    <label><input type="radio" name="os" value="ios_android"> 行動裝置 (iOS/Android)</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label>8. 興趣愛好 [可複選] (type="checkbox")</label>
+                <div class="inline-group">
+                    <label><input type="checkbox" name="hobby" value="coding"> 寫程式</label>
+                    <label><input type="checkbox" name="hobby" value="gaming"> 玩遊戲</label>
+                    <label><input type="checkbox" name="hobby" value="reading"> 閱讀</label>
+                    <label><input type="checkbox" name="hobby" value="sports"> 運動</label>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="satisfaction">9. 對目前生活滿意度 (type="range")</label>
+                <div style="display: flex; align-items: center; gap: 10px;">
+                    <span>很不滿意</span>
+                    <input type="range" id="satisfaction" name="satisfaction" min="0" max="100" value="50">
+                    <span>非常滿意</span>
+                </div>
+            </div>
+
+            <div class="form-group">
+                <label for="favcolor">10. 選擇您的個人代表色 (type="color")</label>
+                <input type="color" id="favcolor" name="favcolor" value="#3498db">
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>時間、檔案與非常用分類</legend>
+
+            <div class="form-group">
+                <label for="birthday">11. 出生日期 (type="date")</label>
+                <input type="date" id="birthday" name="birthday">
+            </div>
+
+            <div class="form-group">
+                <label for="alarm">12. 通常幾點起床 (type="time")</label>
+                <input type="time" id="alarm" name="alarm" value="07:30">
+            </div>
+
+            <div class="form-group">
+                <label for="vacation-week">13. 預計哪一週休假 (type="week")</label>
+                <input type="week" id="vacation-week" name="vacation-week">
+            </div>
+
+            <div class="form-group">
+                <label for="best-month">14. 哪個月是你的旅遊旺季 (type="month")</label>
+                <input type="month" id="best-month" name="best-month">
+            </div>
+
+            <div class="form-group">
+                <label for="avatar">15. 上傳個人大頭貼 (type="file")</label>
+                <input type="file" id="avatar" name="avatar" accept="image/*">
+            </div>
+
+            <div class="form-group">
+                <label for="country">16. 搜尋您所在的城市 (type="search" 搭配 datalist)</label>
+                <input type="search" id="country" name="country" list="city-list" placeholder="請輸入或雙擊選擇...">
+                <datalist id="city-list">
+                    <option value="台北市">
+                    <option value="新北市">
+                    <option value="台中市">
+                    <option value="台南市">
+                    <option value="高雄市">
+                </datalist>
+            </div>
+        </fieldset>
+
+        <fieldset>
+            <legend>其他常用表單元素 (對比參考)</legend>
+            
+            <div class="form-group">
+                <label for="education">17. 最高學歷 (select)</label>
+                <select id="education" name="education">
+                    <option value="highschool">高中職</option>
+                    <option value="bachelor" selected>大學/專科</option>
+                    <option value="master">碩士</option>
+                    <option value="phd">博士</option>
+                </select>
+            </div>
+
+            <div class="form-group">
+                <label for="comments">18. 意見回饋 (textarea)</label>
+                <textarea id="comments" name="comments" rows="4" placeholder="請留下您寶貴的建議..."></textarea>
+            </div>
+        </fieldset>
+
+        <div class="btn-group">
+            <input type="submit" value="送出問卷 (type='submit')">
+            
+            <input type="reset" value="重設表單 (type='reset')">
+            
+            <input type="button" value="一般按鈕 (type='button')" onclick="alert('你點擊了一般按鈕！')">
+        </div>
+
+    </form>
+</div>
+
+</body>
+</html>
