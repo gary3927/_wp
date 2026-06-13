@@ -1,0 +1,52 @@
+<!DOCTYPE html>
+<html lang="zh-TW">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>購物車 - v3</title>
+  <link rel="stylesheet" href="style.css">
+</head>
+<body>
+
+  <header>
+    <h1>🛒 線上購物</h1>
+    <p class="subtitle">v3 — 加入 JavaScript 互動功能</p>
+    <div class="cart-badge">
+      🛒 購物車 <span id="cart-count">0</span>
+    </div>
+  </header>
+
+  <main>
+
+    <section class="products">
+      <h2>商品列表</h2>
+      <div class="product-grid" id="product-grid">
+      </div>
+    </section>
+
+    <section class="cart">
+      <h2>購物車內容</h2>
+      <div id="cart-content">
+        <div class="cart-empty">
+          <p>購物車中沒有商品</p>
+        </div>
+      </div>
+      <div class="cart-summary" id="cart-summary" style="display:none;">
+        <div class="cart-total">
+          <span>總計：</span>
+          <span id="cart-total-price">$0</span>
+        </div>
+        <button class="btn-checkout" onclick="alert('感謝您的購買！')">結帳</button>
+        <button class="btn-clear" onclick="clearCart()">清空購物車</button>
+      </div>
+    </section>
+
+  </main>
+
+  <footer>
+    <p><small>版本 v3 — 完整購物車互動功能</small></p>
+  </footer>
+
+  <script src="script.js"></script>
+</body>
+</html>
