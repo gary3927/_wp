@@ -74,7 +74,7 @@
 
 ```bash
 # 1. 安裝相依套件
-cd homework/midterm
+cd 期中作業
 npm install
 
 # 2. 啟動伺服器
