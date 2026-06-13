@@ -1,204 +1,381 @@
-## 習題 4 
+# 作業 04：10 個 JavaScript 程式練習
 
-AI 問答 -- https://gemini.google.com/share/5bec3b39170d
+## 使用到的語法
 
-## 我的測試結果
-
-```sh
-....
-
-ccc@teacherdeiMac 04 % node 10-score.js
-第一名是：小華 (95分)
-```
-
-## 摘要
-
-為了讓你更清楚程式運作的邏輯，我將每一題的**完整測試程式碼**與 **Console（控制台）輸出的預期結果**整理如下：
+- if / else
+- for 迴圈
+- while 迴圈
+- function (函式)
+- JSON
+- Array (陣列)
+- Object (物件)
 
 ---
 
-### 1. 基礎數字運算
+## 程式列表與執行結果
+
+### 1. 01-if-grade.js — 根據分數給等第 (if)
+
 **程式碼：**
-```javascript
-function checkNumber(num) {
-  if (num > 0) return "正數";
-  if (num < 0) return "負數";
-  return "這是零";
+
+```js
+const score = 85
+
+let grade
+if (score >= 90) {
+  grade = 'A'
+} else if (score >= 80) {
+  grade = 'B'
+} else if (score >= 70) {
+  grade = 'C'
+} else if (score >= 60) {
+  grade = 'D'
+} else {
+  grade = 'F'
 }
 
-console.log("測試 10:", checkNumber(10));
-console.log("測試 -5:", checkNumber(-5));
-console.log("測試 0:", checkNumber(0));
+console.log(`分數: ${score}`)
+console.log(`等第: ${grade}`)
 ```
-**測試結果：**
-> 測試 10: 正數  
-> 測試 -5: 負數  
-> 測試 0: 這是零
+
+**執行結果：**
+
+```
+分數: 85
+等第: B
+```
 
 ---
 
-### 2. 九九乘法表
+### 2. 02-if-leap.js — 閏年判斷 (if)
+
 **程式碼：**
-```javascript
-for (let i = 1; i <= 3; i++) { // 為節省版面，僅示範到 3
-  let row = "";
-  for (let j = 1; j <= 3; j++) {
-    row += `${i} * ${j} = ${i * j}  `;
+
+```js
+const year = 2024
+
+let isLeap
+if ((year % 4 === 0 && year % 100 !== 0) || year % 400 === 0) {
+  isLeap = true
+} else {
+  isLeap = false
+}
+
+console.log(`年份: ${year}`)
+console.log(`是否為閏年: ${isLeap}`)
+```
+
+**執行結果：**
+
+```
+年份: 2024
+是否為閏年: true
+```
+
+---
+
+### 3. 03-for-sum.js — 1 加到 N (for)
+
+**程式碼：**
+
+```js
+const n = 100
+let sum = 0
+
+for (let i = 1; i <= n; i++) {
+  sum += i
+}
+
+console.log(`1 加到 ${n} 的總和 = ${sum}`)
+```
+
+**執行結果：**
+
+```
+1 加到 100 的總和 = 5050
+```
+
+---
+
+### 4. 04-for-table.js — 九九乘法表 (for)
+
+**程式碼：**
+
+```js
+console.log('九九乘法表')
+console.log('==========')
+
+for (let i = 1; i <= 9; i++) {
+  let row = ''
+  for (let j = 1; j <= 9; j++) {
+    row += `${i}×${j}=${i * j}\t`
   }
-  console.log(row);
+  console.log(row)
 }
 ```
-**測試結果：**
-> 1 * 1 = 1  1 * 2 = 2  1 * 3 = 3  
-> 2 * 1 = 2  2 * 2 = 4  2 * 3 = 6  
-> 3 * 1 = 3  3 * 2 = 6  3 * 3 = 9
+
+**執行結果：**
+
+```
+九九乘法表
+==========
+1×1=1	1×2=2	1×3=3	1×4=4	1×5=5	1×6=6	1×7=7	1×8=8	1×9=9	
+2×1=2	2×2=4	2×3=6	2×4=8	2×5=10	2×6=12	2×7=14	2×8=16	2×9=18	
+3×1=3	3×2=6	3×3=9	3×4=12	3×5=15	3×6=18	3×7=21	3×8=24	3×9=27	
+4×1=4	4×2=8	4×3=12	4×4=16	4×5=20	4×6=24	4×7=28	4×8=32	4×9=36	
+5×1=5	5×2=10	5×3=15	5×4=20	5×5=25	5×6=30	5×7=35	5×8=40	5×9=45	
+6×1=6	6×2=12	6×3=18	6×4=24	6×5=30	6×6=36	6×7=42	6×8=48	6×9=54	
+7×1=7	7×2=14	7×3=21	7×4=28	7×5=35	7×6=42	7×7=49	7×8=56	7×9=63	
+8×1=8	8×2=16	8×3=24	8×4=32	8×5=40	8×6=48	8×7=56	8×8=64	8×9=72	
+9×1=9	9×2=18	9×3=27	9×4=36	9×5=45	9×6=54	9×7=63	9×8=72	9×9=81	
+```
 
 ---
 
-### 3. 陣列加總與平均
+### 5. 05-while-factorial.js — 計算階乘 (while)
+
 **程式碼：**
-```javascript
-const data = [10, 20, 30, 40, 50];
-let sum = 0;
-for (let i = 0; i < data.length; i++) {
-  sum += data[i];
+
+```js
+const n = 6
+let result = 1
+let i = 1
+
+while (i <= n) {
+  result *= i
+  i++
 }
-const result = { total: sum, average: sum / data.length };
-console.log("運算結果：", result);
+
+console.log(`${n}! = ${result}`)
 ```
-**測試結果：**
-> 運算結果： { total: 150, average: 30 }
+
+**執行結果：**
+
+```
+6! = 720
+```
 
 ---
 
-### 4. 猜數字遊戲
-**程式碼：**
-```javascript
-let target = 3; 
-let guess = 0;
-while (guess !== target) {
-  guess++; // 模擬從 1 開始猜
-  console.log("當前猜測數字：" + guess);
-}
-console.log("中獎！數字是 " + guess);
-```
-**測試結果：**
-> 當前猜測數字：1  
-> 當前猜測數字：2  
-> 當前猜測數字：3  
-> 中獎！數字是 3
+### 6. 06-while-gcd.js — 最大公因數 (while + function)
 
----
-
-### 5. 聯絡人清單
 **程式碼：**
-```javascript
-let user = {
-  name: "Gemini",
-  email: "old@mail.com",
-  updateEmail: function(newEmail) {
-    this.email = newEmail;
+
+```js
+function gcd(a, b) {
+  while (b !== 0) {
+    let temp = b
+    b = a % b
+    a = temp
   }
-};
-console.log("更新前：", user.email);
-user.updateEmail("hello@google.com");
-console.log("更新後：", user.email);
-```
-**測試結果：**
-> 更新前： old@mail.com  
-> 更新後： hello@google.com
-
----
-
-### 6. 訂單篩選器
-**程式碼：**
-```javascript
-const jsonString = '[{"id":1, "price":800}, {"id":2, "price":1500}, {"id":3, "price":2000}]';
-const orders = JSON.parse(jsonString);
-let highValue = [];
-
-for (let i = 0; i < orders.length; i++) {
-  if (orders[i].price > 1000) highValue.push(orders[i].id);
+  return a
 }
-console.log("高額訂單 ID 清單：", highValue);
+
+console.log(`gcd(48, 18) = ${gcd(48, 18)}`)
+console.log(`gcd(56, 98) = ${gcd(56, 98)}`)
 ```
-**測試結果：**
-> 高額訂單 ID 清單： [ 2, 3 ]
+
+**執行結果：**
+
+```
+gcd(48, 18) = 6
+gcd(56, 98) = 14
+```
 
 ---
 
-### 7. 購物車計算
-**程式碼：**
-```javascript
-const cart = [
-  { name: "咖啡", price: 50, qty: 2 },
-  { name: "三明治", price: 80, qty: 1 }
-];
-let total = 0;
-for (let item of cart) {
-  total += item.price * item.qty;
-}
-console.log("應付總金額：", total);
-```
-**測試結果：**
-> 應付總金額： 180
+### 7. 07-function-prime.js — 質數判斷 (function + for)
 
----
-
-### 8. 倒數計時器
 **程式碼：**
-```javascript
-function countDown(n) {
-  while (n >= 0) {
-    if (n === 0) console.log("時間到！");
-    else console.log(n + "...");
-    n--;
+
+```js
+function isPrime(n) {
+  if (n < 2) return false
+  for (let i = 2; i <= Math.sqrt(n); i++) {
+    if (n % i === 0) return false
   }
+  return true
 }
-countDown(3);
+
+for (let i = 1; i <= 20; i++) {
+  console.log(`${i} ${isPrime(i) ? '是' : '不是'}質數`)
+}
 ```
-**測試結果：**
-> 3...  
-> 2...  
-> 1...  
-> 時間到！
+
+**執行結果：**
+
+```
+1 不是質數
+2 是質數
+3 是質數
+4 不是質數
+5 是質數
+6 不是質數
+7 是質數
+8 不是質數
+9 不是質數
+10 不是質數
+11 是質數
+12 不是質數
+13 是質數
+14 不是質數
+15 不是質數
+16 不是質數
+17 是質數
+18 不是質數
+19 是質數
+20 不是質數
+```
 
 ---
 
-### 9. 字串反轉工具
+### 8. 08-function-celsius.js — 攝氏華氏轉換 (function)
+
 **程式碼：**
-```javascript
-function reverseString(str) {
-  return str.split("").reverse().join("");
+
+```js
+function cToF(c) {
+  return c * 9 / 5 + 32
 }
-const original = "Apple";
-console.log(`${original} 反轉後為: ${reverseString(original)}`);
+
+function fToC(f) {
+  return (f - 32) * 5 / 9
+}
+
+console.log('攝氏 0°C = 華氏 ' + cToF(0) + '°F')
+console.log('攝氏 100°C = 華氏 ' + cToF(100) + '°F')
+console.log('華氏 32°F = 攝氏 ' + fToC(32) + '°C')
+console.log('華氏 212°F = 攝氏 ' + fToC(212) + '°C')
 ```
-**測試結果：**
-> Apple 反轉後為: elppA
+
+**執行結果：**
+
+```
+攝氏 0°C = 華氏 32°F
+攝氏 100°C = 華氏 212°F
+華氏 32°F = 攝氏 0°C
+華氏 212°F = 攝氏 100°C
+```
 
 ---
 
-### 10. 成績管理系統
+### 9. 09-array-json-students.js — 學生資料管理 (Array + JSON)
+
 **程式碼：**
-```javascript
+
+```js
 const students = [
-  { name: "小明", score: 60 },
-  { name: "小華", score: 95 }
-];
-let top = students[0];
-for (let s of students) {
-  if (s.score > top.score) top = s;
+  { name: 'Alice', age: 20, score: 85 },
+  { name: 'Bob', age: 21, score: 92 },
+  { name: 'Charlie', age: 19, score: 78 },
+  { name: 'Diana', age: 22, score: 95 },
+]
+
+console.log('=== 學生資料 ===')
+for (let i = 0; i < students.length; i++) {
+  const s = students[i]
+  console.log(`姓名: ${s.name}, 年齡: ${s.age}, 成績: ${s.score}`)
 }
-console.log(`第一名是：${top.name} (${top.score}分)`);
+
+let total = 0
+for (let i = 0; i < students.length; i++) {
+  total += students[i].score
+}
+const avg = total / students.length
+console.log(`\n平均成績: ${avg.toFixed(1)}`)
+
+const topStudents = students.filter(s => s.score >= 90)
+console.log(`\n優秀學生 (成績 ≥ 90):`)
+topStudents.forEach(s => console.log(`  ${s.name} - ${s.score}分`))
 ```
-**測試結果：**
-> 第一名是：小華 (95分)
+
+**執行結果：**
+
+```
+=== 學生資料 ===
+姓名: Alice, 年齡: 20, 成績: 85
+姓名: Bob, 年齡: 21, 成績: 92
+姓名: Charlie, 年齡: 19, 成績: 78
+姓名: Diana, 年齡: 22, 成績: 95
+
+平均成績: 87.5
+
+優秀學生 (成績 ≥ 90):
+  Bob - 92分
+  Diana - 95分
+```
 
 ---
 
-這些練習涵蓋了開發中最常見的資料處理方式。如果你對哪一題的程式語法（例如 `JSON.parse` 或 `this`）感到困惑，歡迎告訴我，我為你解釋！
+### 10. 10-object-car.js — 汽車物件 (Object)
 
-**需要我挑選其中一題，教你如何用更簡潔的「現代 JS ES6+」寫法重新達成嗎？**
+**程式碼：**
 
+```js
+const car = {
+  brand: 'Toyota',
+  model: 'Corolla',
+  year: 2024,
+  speed: 0,
 
+  accelerate(amount) {
+    this.speed += amount
+    console.log(`加速 ${amount} km/h，目前時速: ${this.speed} km/h`)
+  },
+
+  brake(amount) {
+    this.speed = Math.max(0, this.speed - amount)
+    console.log(`減速 ${amount} km/h，目前時速: ${this.speed} km/h`)
+  },
+
+  displayInfo() {
+    console.log(`品牌: ${this.brand}`)
+    console.log(`型號: ${this.model}`)
+    console.log(`年份: ${this.year}`)
+    console.log(`目前時速: ${this.speed} km/h`)
+  },
+}
+
+car.displayInfo()
+console.log('---')
+car.accelerate(30)
+car.accelerate(20)
+car.brake(15)
+console.log('---')
+car.displayInfo()
+```
+
+**執行結果：**
+
+```
+品牌: Toyota
+型號: Corolla
+年份: 2024
+目前時速: 0 km/h
+---
+加速 30 km/h，目前時速: 30 km/h
+加速 20 km/h，目前時速: 50 km/h
+減速 15 km/h，目前時速: 35 km/h
+---
+品牌: Toyota
+型號: Corolla
+年份: 2024
+目前時速: 35 km/h
+```
+
+---
+
+## 涵蓋語法對照表
+
+| 程式 | if/else | for | while | function | JSON | Array | Object |
+|------|:-------:|:---:|:-----:|:--------:|:----:|:-----:|:------:|
+| 01-if-grade | ✅ | | | | | | |
+| 02-if-leap | ✅ | | | | | | |
+| 03-for-sum | | ✅ | | | | | |
+| 04-for-table | | ✅ | | | | | |
+| 05-while-factorial | | | ✅ | | | | |
+| 06-while-gcd | | | ✅ | ✅ | | | |
+| 07-function-prime | | ✅ | | ✅ | | | |
+| 08-function-celsius | | | | ✅ | | | |
+| 09-array-json-students | | ✅ | | | ✅ | ✅ | |
+| 10-object-car | | | | ✅ | | | ✅ |
